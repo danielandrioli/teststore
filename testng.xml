@@ -4,5 +4,8 @@
 <suite name="Suite1" verbose="1" >
 
     <test name="mTest">
+        <classes>
+            <class name="testcases.Login"></class>
+        </classes>
     </test>
 </suite>
