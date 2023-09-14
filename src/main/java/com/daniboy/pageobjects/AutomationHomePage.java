@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AutomationHomePage extends AbstractPage {
+public class AutomationHomePage extends BasePage {
     public static final String pageTitle = "Homepage";
 
     @FindBy(linkText = "TEST STORE")

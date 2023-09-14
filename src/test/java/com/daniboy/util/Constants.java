@@ -7,4 +7,5 @@ public final class Constants {
     public static final String automationTestSiteBaseURL = "https://www.automationtesting.co.uk/";
     public static final String storeTestSiteBaseURL = "http://teststore.automationtesting.co.uk/";
     public static final String failedLoginMessage = "Authentication failed.";
+    public static final int productListSizeOnHomepage = 8;
 }

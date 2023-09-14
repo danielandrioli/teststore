@@ -45,6 +45,7 @@ public class LoginTest extends BaseWebTest {
         Assert.assertEquals(loginPage.isPasswordHidden(), true);
         loginPage.showOrHidePassword();
         Assert.assertEquals(loginPage.isPasswordHidden(), false);
+        loginPage.clearFields();
     }
 
     @Parameters("email")

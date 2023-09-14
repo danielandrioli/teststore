@@ -1,12 +1,11 @@
 package com.daniboy.pageobjects.store;
 
-import com.daniboy.pageobjects.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class StoreLoginPage extends AbstractPage {
+public class StoreLoginPage extends StoreBasePage {
     public static final String pageTitle = "Login";
 
     @FindBy(css = "section input[name='email']")
@@ -22,8 +21,7 @@ public class StoreLoginPage extends AbstractPage {
 
     public StoreLoginPage(WebDriver driver) {
         super(driver, pageTitle);
-        PageFactory.initElements(driver, this);
-
+//        PageFactory.initElements(driver, this);
     }
 
     public void enterEmail(String email) {

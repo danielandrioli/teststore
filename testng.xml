@@ -7,7 +7,8 @@
         <parameter name="email" value="test@test.com"/>
         <parameter name="password" value="test123"/>
         <classes>
-            <class name="tests.LoginTest"/>
+            <class name="tests.ProductTest"/>
+<!--            <class name="tests.LoginTest"/>-->
 <!--            <class name="tests.AutomationSiteNavigationTest"/>-->
         </classes>
     </test>
