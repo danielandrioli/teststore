@@ -1,27 +1,29 @@
 package com.daniboy;
 
+import com.daniboy.driver.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 
 @Listeners(ITestListenerImpl.class)
 public abstract class BaseWebTest {
-    WebDriver driver;
+    protected WebDriver driver;
 
-    @BeforeSuite
-    public void setup() {
-        driver = new ChromeDriver();
+    @Parameters("browser")
+    @BeforeClass
+    public void setup(String browser) {
+        driver = DriverFactory.getDriverFromString(browser);
         driver.manage().window().maximize();
+        System.out.println("setup");
     }
 
-    @AfterSuite
+    @AfterClass
     public void teardown() {
         driver.quit();
+        System.out.println("teardown");
     }
 
     public WebDriver getDriver() {
         return driver;
     }
 }
+

@@ -2,10 +2,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite1" verbose="1" >
-
-    <test name="mTest">
+    <parameter name="browser" value="chrome"/>
+    <test name="storeTest">
+        <parameter name="email" value="test@test.com"/>
+        <parameter name="password" value="test123"/>
         <classes>
-            <class name="testcases.Login"></class>
+            <class name="tests.LoginTest"/>
+<!--            <class name="tests.AutomationSiteNavigationTest"/>-->
         </classes>
     </test>
 </suite>
