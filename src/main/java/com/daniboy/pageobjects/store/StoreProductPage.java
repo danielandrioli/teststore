@@ -12,8 +12,8 @@ public class StoreProductPage extends StoreBasePage {
         productFrame = new ProductFrame(driver);
     }
 
-    public ProductFrame getProductFrame() {
-        return productFrame;
+    public Product getProduct() {
+        return productFrame.getProduct();
     }
 
 //    public Product getProduct() { //talvez só deixar o getProductFrame

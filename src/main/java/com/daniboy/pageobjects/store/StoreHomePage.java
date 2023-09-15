@@ -16,14 +16,13 @@ public class StoreHomePage extends StoreBasePage {
     @FindBy(css = ".product-miniature")
     private List<WebElement> productsWE;
     @FindBy(css = ".add-to-cart.btn.btn-primary")
-    private WebElement addToCartBtn;
     private ProductFrame productFrame;
 
     public StoreHomePage(WebDriver driver) {
         super(driver, pageTitle);
     }
 
-    public List<ProductSmallContainer> getProductsContainers() {
+    private List<ProductSmallContainer> getProductsContainers() {
         return productsWE.stream().map(webElement -> new ProductSmallContainer(webElement)).toList();
     }
 
@@ -32,9 +31,13 @@ public class StoreHomePage extends StoreBasePage {
                 .findFirst().orElseThrow();
     }
 
-//    public Product getProduct() {
-//        return productFrame.getProduct();
-//    }
+    public Product getProduct() {
+        return productFrame.getProduct();
+    }
+
+    public List<Product> getProducts() {
+        return getProductsContainers().stream().map(p -> p.getProduct()).toList();
+    }
 
     public StoreProductPage clickOnProduct(Predicate<Product> condition) {
         ProductSmallContainer pContainer = getProductContainer(condition);
@@ -42,15 +45,16 @@ public class StoreHomePage extends StoreBasePage {
         return new StoreProductPage(driver, pContainer.getProduct().getName());
     }
 
-    public ProductFrame clickOnQuickView(Predicate<Product> condition) {
+    public StoreHomePage clickOnQuickView(Predicate<Product> condition) {
         getProductContainer(condition).clickOnQuickView(new Actions(driver));
         productFrame = new ProductFrame(driver);
-        return productFrame;
-    }
+        return this; //humm... posso voltar o ProductFrame sim! E encadeado nele, clicar no add to cart. Isso!
+    }               //E o addToCart pode retornar aquele outro frame do Proceed to Checkout!
 
-    public void addProductToCart() {//deletar?
-//        if (productFrame == null) throw new ClassCastException();
+    public StoreHomePage addProductToCart() {
         productFrame.clickOnCartBtn();
+        //pegar msg aqui? ter um frame dentro do product frame. Ele vai aparecer apos clicar no proceed to checkout
+        return this;
     }
 
 //    public void clickOnCartBtn() { //talvez isso deve pertencer a outra classe... e essa classe ser um atributo de StoreHomePage
