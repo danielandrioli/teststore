@@ -2,7 +2,10 @@ package com.daniboy;
 
 import com.daniboy.driver.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 
 @Listeners(ITestListenerImpl.class)
 public abstract class BaseWebTest {
@@ -13,6 +16,7 @@ public abstract class BaseWebTest {
     public void setup(String browser) {
         driver = DriverFactory.getDriverFromString(browser);
         driver.manage().window().maximize();
+
         System.out.println("setup");
     }
 

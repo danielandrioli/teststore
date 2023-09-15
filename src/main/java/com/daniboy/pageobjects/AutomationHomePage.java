@@ -15,7 +15,7 @@ public class AutomationHomePage extends BasePage {
 
     public AutomationHomePage(WebDriver driver) {
         super(driver, pageTitle);
-        PageFactory.initElements(driver, this);
+//        PageFactory.initElements(driver, this);
         closeCookie.click();
     }
 

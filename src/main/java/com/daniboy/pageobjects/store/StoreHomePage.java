@@ -1,13 +1,13 @@
 package com.daniboy.pageobjects.store;
 
 import com.daniboy.pageobjects.store.components.Product;
+import com.daniboy.pageobjects.store.components.ProductFrame;
+import com.daniboy.pageobjects.store.components.ProductSmallContainer;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -17,22 +17,45 @@ public class StoreHomePage extends StoreBasePage {
     private List<WebElement> productsWE;
     @FindBy(css = ".add-to-cart.btn.btn-primary")
     private WebElement addToCartBtn;
+    private ProductFrame productFrame;
 
     public StoreHomePage(WebDriver driver) {
         super(driver, pageTitle);
     }
 
-    public List<Product> getProducts() {
-        return productsWE.stream().map(webElement -> new Product(webElement)).toList();
+    public List<ProductSmallContainer> getProductsContainers() {
+        return productsWE.stream().map(webElement -> new ProductSmallContainer(webElement)).toList();
     }
 
-    public Product getProduct(Predicate<Product> condition) {
-        return getProducts().stream().filter(condition).findFirst().orElseThrow();
+    private ProductSmallContainer getProductContainer(Predicate<Product> condition) {
+        return getProductsContainers().stream().filter(pContainer -> condition.test(pContainer.getProduct()))
+                .findFirst().orElseThrow();
     }
 
-    public void clickOnCartBtn() { //talvez isso deve pertencer a outra classe... e essa classe ser um atributo de StoreHomePage
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        wait.until(ExpectedConditions.visibilityOf(addToCartBtn)).click(); // waits deve estar nessa clase (Page class)
-    }//RETORNAR A PAGE DAQUELE MODAL QUE CONTÉM O PRODUCT, PROCEED TO CHECKOUT, CONTINUE SHOPPING...
+//    public Product getProduct() {
+//        return productFrame.getProduct();
+//    }
+
+    public StoreProductPage clickOnProduct(Predicate<Product> condition) {
+        ProductSmallContainer pContainer = getProductContainer(condition);
+        pContainer.clickOnProduct();
+        return new StoreProductPage(driver, pContainer.getProduct().getName());
+    }
+
+    public ProductFrame clickOnQuickView(Predicate<Product> condition) {
+        getProductContainer(condition).clickOnQuickView(new Actions(driver));
+        productFrame = new ProductFrame(driver);
+        return productFrame;
+    }
+
+    public void addProductToCart() {//deletar?
+//        if (productFrame == null) throw new ClassCastException();
+        productFrame.clickOnCartBtn();
+    }
+
+//    public void clickOnCartBtn() { //talvez isso deve pertencer a outra classe... e essa classe ser um atributo de StoreHomePage
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+//        wait.until(ExpectedConditions.visibilityOf(addToCartBtn)).click(); // waits deve estar nessa clase (Page class)
+//    }//RETORNAR A PAGE DAQUELE MODAL QUE CONTÉM O PRODUCT, PROCEED TO CHECKOUT, CONTINUE SHOPPING... ela aparece apos o clique no add to cart
 
 }
