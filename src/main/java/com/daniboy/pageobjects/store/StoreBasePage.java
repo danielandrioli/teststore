@@ -16,7 +16,7 @@ public abstract class StoreBasePage extends BasePage {
     @FindBy(css = "[title] .hidden-sm-down")
     protected WebElement myAccountBtn;
 
-    private WebDriver driver;
+    protected WebDriver driver;
 
     public StoreBasePage(WebDriver driver, String pageTitle) {
         super(driver, pageTitle);

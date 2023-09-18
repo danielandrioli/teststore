@@ -47,14 +47,8 @@ public class StoreHomePage extends StoreBasePage {
 
     public ProductFrame clickOnQuickView(Predicate<Product> condition) {
         getProductContainer(condition).clickOnQuickView(new Actions(driver));
-        productFrame = new ProductFrame(driver);
-        return productFrame; //humm... posso voltar o ProductFrame sim! E encadeado nele, clicar no add to cart. Isso!
-    }               //E o addToCart pode retornar aquele outro frame do Proceed to Checkout!
-
-    public StoreHomePage addProductToCart() {
-        productFrame.clickOnCartBtn();
-        //pegar msg aqui? ter um frame dentro do product frame. Ele vai aparecer apos clicar no proceed to checkout
-        return this;
+        productFrame = new ProductFrame(driver); //e se o clickOnQuickView do container retornar o product frame...? Preciso armazenar esse frame aqui, afinal?
+        return productFrame;
     }
 
 //    public void clickOnCartBtn() { //talvez isso deve pertencer a outra classe... e essa classe ser um atributo de StoreHomePage

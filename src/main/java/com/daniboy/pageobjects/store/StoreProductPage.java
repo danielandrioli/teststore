@@ -12,7 +12,11 @@ public class StoreProductPage extends StoreBasePage {
         productFrame = new ProductFrame(driver);
     }
 
-    public Product getProduct() {
-        return productFrame.getProduct();
+//    public Product getProduct() {
+//        return productFrame.getProduct();
+//    }
+
+    public ProductFrame getProductFrame() {
+        return productFrame;
     }
 }

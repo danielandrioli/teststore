@@ -1,10 +1,12 @@
 package com.daniboy.pageobjects.store.components;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -14,8 +16,8 @@ public class ProductFrame {
     private WebElement name;
     @FindBy(css = "[itemprop='price']")
     private WebElement price;
-    @FindBy(css = ".product-variants")
-    private WebElement variants;
+//    @FindBy(css = ".product-variants")
+//    private WebElement variants;
     @FindBy(css = ".bootstrap-touchspin-up")
     private WebElement btnIncreaseQuantity;
     @FindBy(css = ".bootstrap-touchspin-down")
@@ -47,8 +49,26 @@ public class ProductFrame {
         return product;
     }
 
-    public ProductAddedToCartFrame clickOnCartBtn() {
+    public ProductAddedToCartFrame clickOnAddToCartBtn() {
         wait.until(ExpectedConditions.visibilityOf(btnAddToCart)).click();
         return new ProductAddedToCartFrame(driver);
     }
+
+    public ProductFrame clickOnIncreaseQuantity() {
+        btnIncreaseQuantity.click();
+        return this;
+    }
+
+    public ProductFrame clickOnDecreaseQuantity() {
+        btnDecreaseQuantity.click();
+        return this;
+    }
+
+    public ProductFrame selectVariant(String variant) {
+        Select select = new Select(driver.findElement(By.cssSelector("select"))); // Alguns produtos não tem variante,
+        select.selectByVisibleText(variant);                                      // por isso não posso inicializar com findBy.
+        return this;
+    }
+
+
 }
