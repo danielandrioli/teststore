@@ -14,7 +14,7 @@ import java.time.Duration;
 public class ProductFrame {
     @FindBy(css = ".h1")
     private WebElement name;
-    @FindBy(css = "[itemprop='price']")
+    @FindBy(css = ".current-price [itemprop]")
     private WebElement price;
 //    @FindBy(css = ".product-variants")
 //    private WebElement variants;
@@ -26,6 +26,8 @@ public class ProductFrame {
     private WebElement btnAddToCart;
     @FindBy(css = ".product-cover")
     private WebElement cover;
+    @FindBy(css = "#quantity_wanted")
+    private WebElement quantity;
 
     private Product product;
     private WebDriverWait wait;
@@ -35,12 +37,14 @@ public class ProductFrame {
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(name));
+        wait.until(ExpectedConditions.visibilityOf(price));
         this.driver = driver;
         createProduct();
     }
 
     private void createProduct() {
         String priceStr = price.getText().replace("$", "");
+        System.out.println("PRECOOO " + priceStr + " | nome: " + name.getText()); //todo remover linha
         double productPrice = Double.parseDouble(priceStr);
         this.product = new Product(name.getText(), productPrice);
     }

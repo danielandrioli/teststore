@@ -17,7 +17,7 @@ import java.time.Duration;
 public class ProductAddedToCartFrame {
     @FindBy(css = ".product-name")
     private WebElement name;
-    @FindBy(css = ".product-price")
+    @FindBy(xpath = "//p[@class='product-price']")
     private WebElement productPrice;
     @FindBy(xpath = "//span[contains(., 'Quantity')]//strong") //xpath = "//span[text()='Quantity: ']//strong") funcionou tb, mas quero evitar NBSP.
     private WebElement quantity; // O número da quantidade mostrada nesse frame equivale a quantidade de produtos iguais a esse no carrinho.
@@ -32,6 +32,7 @@ public class ProductAddedToCartFrame {
         PageFactory.initElements(driver, this);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOf(quantity));
+        wait.until(ExpectedConditions.visibilityOf(productPrice));
         this.driver = driver;
         createProduct();
     }

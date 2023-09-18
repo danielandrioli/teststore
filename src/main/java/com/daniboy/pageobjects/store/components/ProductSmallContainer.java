@@ -27,11 +27,9 @@ public class ProductSmallContainer {
     public void clickOnQuickView(Actions action) { // Quick View aparece apenas após deixar mouse em cima. Sem isso, dá exception.
         action.moveToElement(root).perform(); // moveToElement shifts the mouse pointer to the center of the element
         root.findElement(quickViewBy).click();
-        //um teste: checar se o preço e infos abertas no modal são as mesmas. Retornar aqui o modal?
     }
 
     public void clickOnProduct() {
         root.click();
-        //RETORNAR A PÁGINA SOBRE O PRODUTO? Creio que sim...
     }
 }

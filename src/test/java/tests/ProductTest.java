@@ -72,7 +72,7 @@ public class ProductTest extends BaseWebTest {
                 .clickOnAddToCartBtn()
                 .clickProceedToCheckout();
 
-
+        Assert.assertEquals(driver.getTitle(), StoreCartPage.pageTitle);
     }
 
 //    @Test(dependsOnMethods = "clickOnProduct") //NA REAL NAO DEPENDE, SÓ TO CRIANDO UMA ORDEM

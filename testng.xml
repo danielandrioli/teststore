@@ -7,7 +7,12 @@
         <parameter name="email" value="test@test.com"/>
         <parameter name="password" value="test123"/>
         <classes>
-            <class name="tests.ProductTest"/>
+            <class name="tests.ProductTest">
+<!--                <methods>-->
+<!--                    <include-->
+<!--                            name="enterProductPageThenSelectVariantThenIncreaseQuantityThenAddToCartThenProceedToCheckout"/>-->
+<!--                </methods>-->
+            </class>
 <!--            <class name="tests.LoginTest"/>-->
 <!--            <class name="tests.AutomationSiteNavigationTest"/>-->
         </classes>

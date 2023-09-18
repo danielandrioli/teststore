@@ -15,8 +15,6 @@ public class StoreHomePage extends StoreBasePage {
     public static final String pageTitle = "teststore";
     @FindBy(css = ".product-miniature")
     private List<WebElement> productsWE;
-    @FindBy(css = ".add-to-cart.btn.btn-primary")
-    private ProductFrame productFrame;
 
     public StoreHomePage(WebDriver driver) {
         super(driver, pageTitle);
@@ -31,9 +29,9 @@ public class StoreHomePage extends StoreBasePage {
                 .findFirst().orElseThrow();
     }
 
-    public Product getProduct() {
-        return productFrame.getProduct();
-    }
+//    public Product getProduct() {
+//        return productFrame.getProduct();
+//    }
 
     public List<Product> getProducts() {
         return getProductsContainers().stream().map(p -> p.getProduct()).toList();
@@ -47,13 +45,6 @@ public class StoreHomePage extends StoreBasePage {
 
     public ProductFrame clickOnQuickView(Predicate<Product> condition) {
         getProductContainer(condition).clickOnQuickView(new Actions(driver));
-        productFrame = new ProductFrame(driver); //e se o clickOnQuickView do container retornar o product frame...? Preciso armazenar esse frame aqui, afinal?
-        return productFrame;
+        return new ProductFrame(driver); //e se o clickOnQuickView do container retornar o product frame...?
     }
-
-//    public void clickOnCartBtn() { //talvez isso deve pertencer a outra classe... e essa classe ser um atributo de StoreHomePage
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-//        wait.until(ExpectedConditions.visibilityOf(addToCartBtn)).click(); // waits deve estar nessa clase (Page class)
-//    }//RETORNAR A PAGE DAQUELE MODAL QUE CONTÉM O PRODUCT, PROCEED TO CHECKOUT, CONTINUE SHOPPING... ela aparece apos o clique no add to cart
-
 }
