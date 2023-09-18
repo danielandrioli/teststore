@@ -30,7 +30,7 @@ public class ProductAddedToCartFrame {
 
     public ProductAddedToCartFrame(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(quantity));
         wait.until(ExpectedConditions.visibilityOf(productPrice));
         this.driver = driver;

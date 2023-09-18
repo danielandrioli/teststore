@@ -18,5 +18,5 @@ public class StoreProductPage extends StoreBasePage {
 
     public ProductFrame getProductFrame() {
         return productFrame;
-    }
+    } //retornar o frame? Ou escrever todos métodos dele aqui e retornar os métodos do frame??
 }

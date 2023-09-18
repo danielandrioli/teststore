@@ -48,7 +48,8 @@ public class ProductTest extends BaseWebTest {
     @Test(dependsOnMethods = "clickOnProduct") //NA REAL NAO DEPENDE, SÓ TO CRIANDO UMA ORDEM
     public void clickOnQuickViewAndAddToCartAndContinue() {
         String productName = "Mug The Best Is Yet To Come";
-        Product product = new StoreHomePage(driver)
+        StoreHomePage homePage = new StoreHomePage(driver);
+        Product product = homePage
                 .clickOnQuickView(p -> p.getName().equalsIgnoreCase(productName))
                 .clickOnAddToCartBtn()
                 .getProduct();
@@ -57,6 +58,7 @@ public class ProductTest extends BaseWebTest {
 
         new ProductAddedToCartFrame(driver).clickContinueShopping();
         Assert.assertEquals(driver.getTitle(), StoreHomePage.pageTitle);
+        Assert.assertEquals(homePage.getCartProductsCount(), 1);
     }
 
     @Test(dependsOnMethods = "clickOnQuickViewAndAddToCartAndContinue")
@@ -73,6 +75,14 @@ public class ProductTest extends BaseWebTest {
                 .clickProceedToCheckout();
 
         Assert.assertEquals(driver.getTitle(), StoreCartPage.pageTitle);
+        Assert.assertEquals(cartPage.getItensQuantity(), 3);
+
+        for (Product product : cartPage.getProductList()) {
+            System.out.println("Nome: %s - Quantidade: %s - Variante: %s - Preço unitário: %s".formatted(
+                    product.getName(), product.getQuantity(), product.getVariants(), product.getPrice()
+            ));
+        }
+        //verificar os produtos que estão no carrinho: nome, qtdade (e preço quem sabe)
     }
 
 //    @Test(dependsOnMethods = "clickOnProduct") //NA REAL NAO DEPENDE, SÓ TO CRIANDO UMA ORDEM

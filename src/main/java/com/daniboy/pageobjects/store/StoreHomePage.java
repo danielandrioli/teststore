@@ -29,10 +29,6 @@ public class StoreHomePage extends StoreBasePage {
                 .findFirst().orElseThrow();
     }
 
-//    public Product getProduct() {
-//        return productFrame.getProduct();
-//    }
-
     public List<Product> getProducts() {
         return getProductsContainers().stream().map(p -> p.getProduct()).toList();
     }

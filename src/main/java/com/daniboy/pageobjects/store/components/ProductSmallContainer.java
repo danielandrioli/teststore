@@ -7,7 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 /*
     Classe utilizada na listagem de itens da homepage.
  */
-public class ProductSmallContainer {
+public class ProductSmallContainer { //tentar colocar com PageFactory?
     private WebElement root;
     private By nameBy = By.cssSelector(".product-title");
     private By priceBy = By.cssSelector(".price");

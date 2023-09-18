@@ -20,18 +20,18 @@ public class LoginTest extends BaseWebTest {
     @Parameters({"email", "password"})
     @Test
     public void loginWithValidCredentialsThenLogout(String email, String password) {
-        new StoreLoginPage(driver)
+        StoreMyAccountPage myAccountPage = new StoreLoginPage(driver)
                 .enterEmail(email)
                 .enterPassword(password)
                 .clickSignInBtn();
         Assert.assertEquals(driver.getTitle(), StoreMyAccountPage.pageTitle);
 
-        new StoreMyAccountPage(driver).logout();
+        myAccountPage.logout();
         Assert.assertEquals(driver.getTitle(), StoreLoginPage.pageTitle);
     }
 
     @Parameters("password")
-    @Test(dependsOnMethods = "loginWithValidCredentialsThenLogout")
+    @Test
     public void passwordIsShownAfterShowBtnIsClicked(String password) {
         StoreLoginPage loginPage = new StoreLoginPage(driver);
         loginPage.enterPassword(password);
@@ -48,7 +48,7 @@ public class LoginTest extends BaseWebTest {
         StoreLoginPage loginPage = new StoreLoginPage(driver)
                 .enterEmail(email)
                 .enterPassword("wrongpassw0rd88")
-                .clickSignInBtn();
+                .clickSignInBtnExpectingFailure();
 
         Assert.assertEquals(driver.getTitle(), StoreLoginPage.pageTitle);
         Assert.assertEquals(loginPage.getFailedLoginMessage(), failedLoginMessage);

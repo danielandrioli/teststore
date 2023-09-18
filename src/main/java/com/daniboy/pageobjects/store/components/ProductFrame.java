@@ -35,7 +35,7 @@ public class ProductFrame {
 
     public ProductFrame(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(name));
         wait.until(ExpectedConditions.visibilityOf(price));
         this.driver = driver;
@@ -44,7 +44,6 @@ public class ProductFrame {
 
     private void createProduct() {
         String priceStr = price.getText().replace("$", "");
-        System.out.println("PRECOOO " + priceStr + " | nome: " + name.getText()); //todo remover linha
         double productPrice = Double.parseDouble(priceStr);
         this.product = new Product(name.getText(), productPrice);
     }
