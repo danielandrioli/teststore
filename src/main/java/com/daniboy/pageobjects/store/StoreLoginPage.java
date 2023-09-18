@@ -3,7 +3,6 @@ package com.daniboy.pageobjects.store;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class StoreLoginPage extends StoreBasePage {
     public static final String pageTitle = "Login";
@@ -21,23 +20,26 @@ public class StoreLoginPage extends StoreBasePage {
 
     public StoreLoginPage(WebDriver driver) {
         super(driver, pageTitle);
-//        PageFactory.initElements(driver, this);
     }
 
-    public void enterEmail(String email) {
+    public StoreLoginPage enterEmail(String email) {
         emailInputField.sendKeys(email);
+        return this;
     }
 
-    public void enterPassword(String password) {
+    public StoreLoginPage enterPassword(String password) {
         passwordInputField.sendKeys(password);
+        return this;
     }
 
-    public void clickSignInBtn() {
+    public StoreLoginPage clickSignInBtn() {
         signInBtn.click();
+        return this;
     }
 
-    public void showOrHidePassword() {
+    public StoreLoginPage showOrHidePassword() {
         showPasswordBtn.click();
+        return this;
     }
 
     public Boolean isPasswordHidden() {
@@ -46,9 +48,10 @@ public class StoreLoginPage extends StoreBasePage {
         } else return false;
     }
 
-    public void clearFields() {
+    public StoreLoginPage clearFields() {
         emailInputField.clear();
         passwordInputField.clear();
+        return this;
     }
 
     public String getFailedLoginMessage() {

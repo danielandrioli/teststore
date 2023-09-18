@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class ProductFrame {
     @FindBy(css = ".h1")
-    private WebElement title;
+    private WebElement name;
     @FindBy(css = "[itemprop='price']")
     private WebElement price;
     @FindBy(css = ".product-variants")
@@ -27,29 +27,28 @@ public class ProductFrame {
 
     private Product product;
     private WebDriverWait wait;
+    private WebDriver driver;
 
     public ProductFrame(WebDriver driver) {
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(title));
+        wait.until(ExpectedConditions.visibilityOf(name));
+        this.driver = driver;
         createProduct();
     }
 
     private void createProduct() {
-        String productName = title.getText();
         String priceStr = price.getText().replace("$", "");
         double productPrice = Double.parseDouble(priceStr);
-        this.product = new Product(productName, productPrice);
+        this.product = new Product(name.getText(), productPrice);
     }
 
     public Product getProduct() {
         return product;
     }
 
-    public void clickOnCartBtn() {
+    public ProductAddedToCartFrame clickOnCartBtn() {
         wait.until(ExpectedConditions.visibilityOf(btnAddToCart)).click();
-    }//RETORNAR A PAGE DAQUELE MODAL QUE CONTÉM O PRODUCT, PROCEED TO CHECKOUT, CONTINUE SHOPPING... ela aparece apos o clique no add to cart
-
-    //click on increase qtt, etc etc etc
-
+        return new ProductAddedToCartFrame(driver);
+    }
 }

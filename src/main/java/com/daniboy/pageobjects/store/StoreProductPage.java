@@ -15,9 +15,4 @@ public class StoreProductPage extends StoreBasePage {
     public Product getProduct() {
         return productFrame.getProduct();
     }
-
-//    public Product getProduct() { //talvez só deixar o getProductFrame
-//        return productFrame.getProduct();
-//    }
-
 }

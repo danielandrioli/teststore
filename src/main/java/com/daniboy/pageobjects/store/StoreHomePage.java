@@ -45,10 +45,10 @@ public class StoreHomePage extends StoreBasePage {
         return new StoreProductPage(driver, pContainer.getProduct().getName());
     }
 
-    public StoreHomePage clickOnQuickView(Predicate<Product> condition) {
+    public ProductFrame clickOnQuickView(Predicate<Product> condition) {
         getProductContainer(condition).clickOnQuickView(new Actions(driver));
         productFrame = new ProductFrame(driver);
-        return this; //humm... posso voltar o ProductFrame sim! E encadeado nele, clicar no add to cart. Isso!
+        return productFrame; //humm... posso voltar o ProductFrame sim! E encadeado nele, clicar no add to cart. Isso!
     }               //E o addToCart pode retornar aquele outro frame do Proceed to Checkout!
 
     public StoreHomePage addProductToCart() {

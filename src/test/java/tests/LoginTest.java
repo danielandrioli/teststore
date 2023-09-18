@@ -19,25 +19,19 @@ public class LoginTest extends BaseWebTest {
 
     @Parameters({"email", "password"})
     @Test
-    public void loginWithValidCredentials(String email, String password) {
-        StoreLoginPage loginPage = new StoreLoginPage(driver);
-        loginPage.enterEmail(email);
-        loginPage.enterPassword(password);
-        loginPage.clickSignInBtn();
-
+    public void loginWithValidCredentialsThenLogout(String email, String password) {
+        new StoreLoginPage(driver)
+                .enterEmail(email)
+                .enterPassword(password)
+                .clickSignInBtn();
         Assert.assertEquals(driver.getTitle(), StoreMyAccountPage.pageTitle);
-    }
 
-    @Test(dependsOnMethods = "loginWithValidCredentials")
-    public void logout() {
-        StoreMyAccountPage myAccountPage = new StoreMyAccountPage(driver);
-        myAccountPage.logout();
-
+        new StoreMyAccountPage(driver).logout();
         Assert.assertEquals(driver.getTitle(), StoreLoginPage.pageTitle);
     }
 
     @Parameters("password")
-    @Test(dependsOnMethods = "logout")
+    @Test(dependsOnMethods = "loginWithValidCredentialsThenLogout")
     public void passwordIsShownAfterShowBtnIsClicked(String password) {
         StoreLoginPage loginPage = new StoreLoginPage(driver);
         loginPage.enterPassword(password);
@@ -51,10 +45,10 @@ public class LoginTest extends BaseWebTest {
     @Parameters("email")
     @Test
     public void failToLoginWithInvalidPassword(String email) {
-        StoreLoginPage loginPage = new StoreLoginPage(driver);
-        loginPage.enterEmail(email);
-        loginPage.enterPassword("wrongpassw0rd88");
-        loginPage.clickSignInBtn();
+        StoreLoginPage loginPage = new StoreLoginPage(driver)
+                .enterEmail(email)
+                .enterPassword("wrongpassw0rd88")
+                .clickSignInBtn();
 
         Assert.assertEquals(driver.getTitle(), StoreLoginPage.pageTitle);
         Assert.assertEquals(loginPage.getFailedLoginMessage(), failedLoginMessage);

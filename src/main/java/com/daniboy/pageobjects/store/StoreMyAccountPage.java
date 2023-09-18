@@ -10,10 +10,10 @@ public class StoreMyAccountPage extends StoreBasePage {
 
     public StoreMyAccountPage(WebDriver driver) {
         super(driver, pageTitle);
-//        PageFactory.initElements(driver, this);
     }
 
-    public void logout() {
+    public StoreMyAccountPage logout() {
         signOutBtn.click();
+        return this;
     }
 }

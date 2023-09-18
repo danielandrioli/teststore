@@ -49,10 +49,10 @@ public class ProductTest extends BaseWebTest {
         String productName = "Mug The Best Is Yet To Come";
         Product product = new StoreHomePage(driver)
                 .clickOnQuickView(p -> p.getName().equalsIgnoreCase(productName))
-                .addProductToCart()
+                .clickOnCartBtn()
                 .getProduct();
 
-        Assert.assertEquals(product.getName(), productName.toUpperCase());
+        Assert.assertTrue(product.getName().equalsIgnoreCase(productName));
 
 //        productFrame.clickOnCartBtn(); //CONTINUAR AQUI... ASSERT Q A MSG RECEBIDA FOI CORRETA E O NÚMERO NO CARRINHO AUMENTOU.
     }
