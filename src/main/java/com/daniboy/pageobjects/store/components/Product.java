@@ -1,6 +1,7 @@
 package com.daniboy.pageobjects.store.components;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Product {
     private String name;
@@ -37,4 +38,16 @@ public class Product {
         return variants;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Double.compare(product.price, price) == 0 && quantity == product.quantity && name.equalsIgnoreCase(product.name) && Objects.equals(variants, product.variants);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price, quantity, variants);
+    }
 }

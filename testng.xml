@@ -8,6 +8,7 @@
         <parameter name="password" value="test123"/>
         <classes>
             <class name="tests.ProductTest"/>
+<!--            <class name="tests.BasicStoreNavigationTest"/>-->
 <!--            <class name="tests.LoginTest"/>-->
 <!--            <class name="tests.AutomationSiteNavigationTest"/>-->
         </classes>

@@ -4,6 +4,7 @@ import com.daniboy.BaseWebTest;
 import com.daniboy.pageobjects.store.StoreLoginPage;
 import com.daniboy.pageobjects.store.StoreMyAccountPage;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -12,7 +13,7 @@ import static com.daniboy.util.Constants.storeTestSiteBaseURL;
 
 public class LoginTest extends BaseWebTest {
 
-    @Test(priority = -1)
+    @BeforeMethod
     public void enterUrl() {
         driver.get(storeTestSiteBaseURL + "login?back=my-account");
     }
@@ -39,7 +40,6 @@ public class LoginTest extends BaseWebTest {
         Assert.assertEquals(loginPage.isPasswordHidden(), true);
         loginPage.showOrHidePassword();
         Assert.assertEquals(loginPage.isPasswordHidden(), false);
-        loginPage.clearFields();
     }
 
     @Parameters("email")
@@ -52,6 +52,5 @@ public class LoginTest extends BaseWebTest {
 
         Assert.assertEquals(driver.getTitle(), StoreLoginPage.pageTitle);
         Assert.assertEquals(loginPage.getFailedLoginMessage(), failedLoginMessage);
-        loginPage.clearFields();
     }
 }

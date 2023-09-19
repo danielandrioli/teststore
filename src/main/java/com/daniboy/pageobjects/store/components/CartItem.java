@@ -29,7 +29,6 @@ public class CartItem {
         product = new Product(productName, productPrice);
         product.setQuantity(quantity);
         product.setVariants(variants);
-        //criar tb atributo quantidade no product e dar um set aqui?
     }
 
     public Product getProduct() { return product; }
