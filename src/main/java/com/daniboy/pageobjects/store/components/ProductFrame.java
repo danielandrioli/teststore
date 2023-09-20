@@ -1,5 +1,6 @@
 package com.daniboy.pageobjects.store.components;
 
+import com.daniboy.util.PriceConverter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,8 +44,7 @@ public class ProductFrame {
     }
 
     private void createProduct() {
-        String priceStr = price.getText().replace("$", "");
-        double productPrice = Double.parseDouble(priceStr);
+        double productPrice = PriceConverter.fromWebElementToDouble(price);
         this.product = new Product(name.getText(), productPrice);
     }
 
@@ -53,7 +53,8 @@ public class ProductFrame {
     }
 
     public ProductAddedToCartFrame clickOnAddToCartBtn() {
-        wait.until(ExpectedConditions.visibilityOf(btnAddToCart)).click();
+//        wait.until(ExpectedConditions.visibilityOf(btnAddToCart)).click();
+        btnAddToCart.click();
         return new ProductAddedToCartFrame(driver);
     }
 

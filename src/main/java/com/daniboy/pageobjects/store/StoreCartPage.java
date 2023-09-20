@@ -2,6 +2,7 @@ package com.daniboy.pageobjects.store;
 
 import com.daniboy.pageobjects.store.components.CartItem;
 import com.daniboy.pageobjects.store.components.Product;
+import com.daniboy.util.PriceConverter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,10 @@ public class StoreCartPage extends StoreBasePage {
     public static final String pageTitle = "Cart";
     @FindBy(css = ".cart-item")
     private List<WebElement> cartList;
+    @FindBy(css = ".cart-total .value")
+    private WebElement totalValue;
+    @FindBy(css = "div#cart-subtotal-shipping > .value")
+    private WebElement shippingCost;
 
     private WebDriver driver;
 
@@ -40,6 +45,14 @@ public class StoreCartPage extends StoreBasePage {
 
     public List<Product> getProductList() {
         return getCartItens().stream().map(cartItem -> cartItem.getProduct()).toList();
+    }
+
+    public double getTotalValue() {
+        return PriceConverter.fromWebElementToDouble(totalValue);
+    }
+
+    public double getShippingCost() {
+        return PriceConverter.fromWebElementToDouble(shippingCost);
     }
 
     public StoreCartPage excludeProduct(Predicate<Product> condition) {

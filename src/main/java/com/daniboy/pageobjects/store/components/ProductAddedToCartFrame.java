@@ -1,6 +1,7 @@
 package com.daniboy.pageobjects.store.components;
 
 import com.daniboy.pageobjects.store.StoreCartPage;
+import com.daniboy.util.PriceConverter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,16 +31,16 @@ public class ProductAddedToCartFrame {
 
     public ProductAddedToCartFrame(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(quantity));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(quantity)); //xpath é lento.
         wait.until(ExpectedConditions.visibilityOf(productPrice));
         this.driver = driver;
+
         createProduct();
     }
 
     private void createProduct() {
-        String priceStr = productPrice.getText().replace("$", "");
-        double price = Double.parseDouble(priceStr);
+        double price = PriceConverter.fromWebElementToDouble(productPrice);
         this.product = new Product(name.getText(), price);
     }
 

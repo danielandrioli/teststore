@@ -50,8 +50,7 @@ public class ProductTest extends BaseWebTest {
 
         List<Product> cartList = cartPage.getProductList();
         Assert.assertTrue(cartList.contains(product));
-
-        //verificar o valor total!
+        Assert.assertEquals(product.getQuantity() * product.getPrice(), cartPage.getTotalValue() - cartPage.getShippingCost());
     }
 
 

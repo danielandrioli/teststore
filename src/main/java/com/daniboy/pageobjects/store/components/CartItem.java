@@ -1,5 +1,6 @@
 package com.daniboy.pageobjects.store.components;
 
+import com.daniboy.util.PriceConverter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -20,8 +21,7 @@ public class CartItem {
     public CartItem(WebElement root) {
         this.root = root;
         String productName = root.findElement(nameBy).getText();
-        String priceTotalStr = root.findElement(priceUnitBy).getText().replace("$", "");
-        double productPrice = Double.parseDouble(priceTotalStr);
+        double productPrice = PriceConverter.fromWebElementToDouble(root.findElement(priceUnitBy));
         int quantity = Integer.parseInt(root.findElement(quantityBy).getAttribute("value"));
         List<String> variants = root.findElements(variantsBy).stream().map(
                 webElement -> webElement.getText()
