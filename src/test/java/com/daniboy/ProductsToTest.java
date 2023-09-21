@@ -1,7 +1,6 @@
 package com.daniboy;
 
 import com.daniboy.pageobjects.store.components.Product;
-
 import java.util.ArrayList;
 import java.util.List;
 

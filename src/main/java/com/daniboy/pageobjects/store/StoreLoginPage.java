@@ -3,7 +3,6 @@ package com.daniboy.pageobjects.store;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class StoreLoginPage extends StoreBasePage {
     public static final String pageTitle = "Login";
@@ -61,7 +60,6 @@ public class StoreLoginPage extends StoreBasePage {
     }
 
     public String getFailedLoginMessage() {
-//        wait.until(ExpectedConditions.visibilityOf(failedLoginMessage));
         return failedLoginMessage.getText();
     }
 }

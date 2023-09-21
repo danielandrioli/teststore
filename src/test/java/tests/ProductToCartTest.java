@@ -14,9 +14,8 @@ import java.util.List;
 
 import static com.daniboy.util.Constants.*;
 
-public class ProductTest extends BaseWebTest {
+public class ProductToCartTest extends BaseWebTest {
 //TROCAR NOME DESSA CLASSE. O QUE ELA VAI TESTAR, TB?
-//    private static Logger log = LogManager.getLogger(ProductTest.class);
 
     @Test(priority = -1)
     public void enterUrl() {
@@ -67,7 +66,6 @@ public class ProductTest extends BaseWebTest {
         Reporter.log("Valor após promo code: " + valueAfterCode + " (custo de envio incluso).");
     }
 
-            //enterCartThenDecreaseQuantityForOneItemAndDeleteAnother //talvez colocar em outro teste. TesteDoCarrinho
     @AfterClass
     @Override
     public void teardown() {

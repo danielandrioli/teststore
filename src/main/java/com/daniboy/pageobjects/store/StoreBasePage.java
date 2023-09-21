@@ -46,5 +46,7 @@ public abstract class StoreBasePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(cartProductsCount));
         return Integer.parseInt(cartProductsCount.getText().replace("(", "").replace(")", ""));
     }
-    //Não ter método de logout aqui. Dependendo de onde o logout será clicado, o usuário poderá permanecer na mesma página ou parar na página de login
+
+    // Método de logout deve retornar void.
+    // Dependendo de onde o logout será clicado, o usuário poderá permanecer na mesma página ou parar na página de login.
 }
