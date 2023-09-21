@@ -8,5 +8,6 @@ public final class Constants {
     public static final String storeTestSiteBaseURL = "http://teststore.automationtesting.co.uk/";
     public static final String failedLoginMessage = "Authentication failed.";
     public static final int productListSizeOnHomepage = 8;
-    public static final double shippingCost = 7.00;
+    public static final String promoCode = "20OFF";
+    public static final double promoDiscount = 0.2;
 }

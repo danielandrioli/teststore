@@ -23,6 +23,17 @@ public enum ProductsToTest {
             product.setVariants(variants);
             return product;
         }
+    },
+    PRODUCT_3 {
+        @Override
+        public Product getProduct() {
+            Product product = new Product("Today is a good day Framed poster", 49.00);
+            product.setQuantity(2);
+            List<String> variants = new ArrayList();
+            variants.add("60x90cm");
+            product.setVariants(variants);
+            return product;
+        }
     };
 
     abstract public Product getProduct();

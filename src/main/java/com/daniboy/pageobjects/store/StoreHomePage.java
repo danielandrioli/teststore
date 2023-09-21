@@ -36,7 +36,8 @@ public class StoreHomePage extends StoreBasePage {
     public StoreProductPage clickOnProduct(Predicate<Product> condition) {
         ProductSmallContainer pContainer = getProductContainer(condition);
         pContainer.clickOnProduct();
-        return new StoreProductPage(driver, pContainer.getProduct().getName());
+        String name = pContainer.getProduct().getName().replace("...", ""); //Alguns produtos tem nome grande, então aparecem com "..." na página.
+        return new StoreProductPage(driver, name);
     }
 
     public ProductFrame clickOnQuickView(Predicate<Product> condition) {
