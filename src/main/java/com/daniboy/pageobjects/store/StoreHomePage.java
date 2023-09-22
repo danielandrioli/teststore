@@ -42,6 +42,6 @@ public class StoreHomePage extends StoreBasePage {
 
     public ProductFrame clickOnQuickView(Predicate<Product> condition) {
         getProductContainer(condition).clickOnQuickView(new Actions(driver));
-        return new ProductFrame(driver); //e se o clickOnQuickView do container retornar o product frame...?
+        return new ProductFrame(driver);
     }
 }

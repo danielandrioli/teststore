@@ -35,18 +35,15 @@ public abstract class StoreBasePage extends BasePage {
         return new StoreCartPage(driver);
     }
 
-    public void clickOnMyAccountBtn() {
-        if (myAccountBtn.getText().equalsIgnoreCase("Sign in")) {
-            //vai ter a página de login. Mas vai ter alguma diferença nesse método, afinal?
-            //todo
-        }
-    }
-
     public int getCartProductsCount() {
         wait.until(ExpectedConditions.visibilityOf(cartProductsCount));
         return Integer.parseInt(cartProductsCount.getText().replace("(", "").replace(")", ""));
     }
 
-    // Método de logout deve retornar void.
+    // Outros métodos que podem ser criados: clickOnMyAccount, clickOnLogout...
+    // Ambos devem retornar void.
     // Dependendo de onde o logout será clicado, o usuário poderá permanecer na mesma página ou parar na página de login.
+    // E dependendo se o usuário está logado ou não, o signIn ou signOut vai aparecer.
+
+    //  //div[@class='user-info']//a[@href='http://teststore.automationtesting.co.uk/my-account'] para tanto no signIn quanto no my account.
 }

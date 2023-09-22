@@ -12,8 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 /*
-    Obs: não há como pegar o seletor da variante do produto (tamanho, dimensão...). Ela é uma tag span apenas, e as vezes tem para um produto
-    e não para outro.
+    Obs: Nesse frame o seletor da variante do produto (tamanho, dimensão...) é uma tag span apenas, e as vezes tem para
+     um produto e não para outro.
  */
 public class ProductAddedToCartFrame {
     @FindBy(css = ".product-name")

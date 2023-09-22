@@ -17,8 +17,6 @@ public class ProductFrame {
     private WebElement name;
     @FindBy(css = ".current-price [itemprop]")
     private WebElement price;
-//    @FindBy(css = ".product-variants")
-//    private WebElement variants;
     @FindBy(css = ".bootstrap-touchspin-up")
     private WebElement btnIncreaseQuantity;
     @FindBy(css = ".bootstrap-touchspin-down")
@@ -53,7 +51,6 @@ public class ProductFrame {
     }
 
     public ProductAddedToCartFrame clickOnAddToCartBtn() {
-//        wait.until(ExpectedConditions.visibilityOf(btnAddToCart)).click();
         btnAddToCart.click();
         return new ProductAddedToCartFrame(driver);
     }
@@ -73,6 +70,4 @@ public class ProductFrame {
         select.selectByVisibleText(variant);                                      // por isso não posso inicializar com findBy.
         return this;
     }
-
-
 }

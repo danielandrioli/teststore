@@ -27,7 +27,7 @@ public class BasicStoreNavigationTest extends BaseWebTest {
         Assert.assertEquals(products.size(), productListSizeOnHomepage);
     }
 
-    @Test(description = "Testing if the product page opens.")
+    @Test(description = "Testing whether the product page opens.")
     public void clickOnProduct() {
         String productName = "Hummingbird Printed Sweater";
         Product product = new StoreHomePage(driver)
@@ -39,7 +39,7 @@ public class BasicStoreNavigationTest extends BaseWebTest {
         Assert.assertTrue(driver.getTitle().equalsIgnoreCase(productName));
     }
 
-    @Test
+    @Test(description = "Testing whether the ‘continue shopping button’ leaves the user on the home page and whether the cart number increases.")
     public void clickOnQuickViewAndAddToCartAndContinueShopping() {
         String productName = "Mug The Best Is Yet To Come";
         StoreHomePage homePage = new StoreHomePage(driver);

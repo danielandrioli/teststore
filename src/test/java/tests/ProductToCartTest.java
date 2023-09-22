@@ -15,7 +15,6 @@ import java.util.List;
 import static com.daniboy.util.Constants.*;
 
 public class ProductToCartTest extends BaseWebTest {
-//TROCAR NOME DESSA CLASSE. O QUE ELA VAI TESTAR, TB?
 
     @Test(priority = -1)
     public void enterUrl() {
@@ -40,7 +39,7 @@ public class ProductToCartTest extends BaseWebTest {
         Assert.assertEquals(driver.getTitle(), StoreCartPage.pageTitle);
         Assert.assertEquals(cartPage.getItensQuantity(), product.getQuantity());
         Assert.assertTrue(cartList.contains(product));
-        Assert.assertEquals(product.getQuantity() * product.getPrice(), cartPage.getTotalValue() - cartPage.getShippingCost());
+        Assert.assertEquals(cartPage.getTotalValue() - cartPage.getShippingCost(), product.getQuantity() * product.getPrice());
 
         for (Product prod : cartPage.getProductList()) {
             Reporter.log("Nome: %s - Quantidade: %s - Variante: %s - Preço unitário: %s".formatted(
