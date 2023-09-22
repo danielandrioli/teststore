@@ -31,17 +31,6 @@ public class LoginTest extends BaseWebTest {
         Assert.assertEquals(driver.getTitle(), StoreLoginPage.pageTitle);
     }
 
-    @Parameters("password")
-    @Test
-    public void passwordIsShownAfterShowBtnIsClicked(String password) {
-        StoreLoginPage loginPage = new StoreLoginPage(driver);
-        loginPage.enterPassword(password);
-
-        Assert.assertEquals(loginPage.isPasswordHidden(), true);
-        loginPage.showOrHidePassword();
-        Assert.assertEquals(loginPage.isPasswordHidden(), false);
-    }
-
     @Parameters("email")
     @Test
     public void failToLoginWithInvalidPassword(String email) {
@@ -52,5 +41,16 @@ public class LoginTest extends BaseWebTest {
 
         Assert.assertEquals(driver.getTitle(), StoreLoginPage.pageTitle);
         Assert.assertEquals(loginPage.getFailedLoginMessage(), failedLoginMessage);
+    }
+
+    @Parameters("password")
+    @Test
+    public void passwordIsShownAfterShowBtnIsClicked(String password) {
+        StoreLoginPage loginPage = new StoreLoginPage(driver);
+        loginPage.enterPassword(password);
+
+        Assert.assertEquals(loginPage.isPasswordHidden(), true);
+        loginPage.showOrHidePassword();
+        Assert.assertEquals(loginPage.isPasswordHidden(), false);
     }
 }
