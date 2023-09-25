@@ -15,11 +15,13 @@ public class LoginTest extends BaseWebTest {
 
     @BeforeMethod
     public void enterUrl() {
+        driver.manage().deleteAllCookies();
         driver.get(storeTestSiteBaseURL + "login?back=my-account");
     }
 
     @Parameters({"email", "password"})
-    @Test
+    @Test(description = "Given I'm on login page, when I submit valid credentials, then I should go to my account page." +
+            "Given I'm logged and I'm on My acccount page, when I click on logout, then I should go to the login page.")
     public void loginWithValidCredentialsThenLogout(String email, String password) {
         StoreMyAccountPage myAccountPage = new StoreLoginPage(driver)
                 .enterEmail(email)
@@ -32,8 +34,9 @@ public class LoginTest extends BaseWebTest {
     }
 
     @Parameters("email")
-    @Test
-    public void failToLoginWithInvalidPassword(String email) {
+    @Test(description = "Given I'm on login page, when I enter invalid credentials, then I should stay on login page and " +
+            "get a failed login message.")
+    public void loginWithInvalidCredentialsShouldFail(String email) {
         StoreLoginPage loginPage = new StoreLoginPage(driver)
                 .enterEmail(email)
                 .enterPassword("wrongpassw0rd88")
@@ -44,8 +47,9 @@ public class LoginTest extends BaseWebTest {
     }
 
     @Parameters("password")
-    @Test
-    public void passwordIsShownAfterShowBtnIsClicked(String password) {
+    @Test(description = "Given I'm on login page, when I type the password, then it should be hidden. " +
+            "Given I'm on login page, when the password is typed and I click on show button, then I should see my password.")
+    public void passwordIsHiddenAfterTypedAndShownAfterShowButtonIsClicked(String password) {
         StoreLoginPage loginPage = new StoreLoginPage(driver);
         loginPage.enterPassword(password);
 

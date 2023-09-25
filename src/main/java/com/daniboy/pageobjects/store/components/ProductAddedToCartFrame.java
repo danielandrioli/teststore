@@ -20,12 +20,14 @@ public class ProductAddedToCartFrame {
     private WebElement name;
     @FindBy(xpath = "//p[@class='product-price']")
     private WebElement productPrice;
-    @FindBy(xpath = "//span[contains(., 'Quantity')]//strong") //xpath = "//span[text()='Quantity: ']//strong") funcionou tb, mas quero evitar NBSP.
+    @FindBy(xpath = "//span[contains(., 'Quantity')]//strong")
     private WebElement quantity; // O número da quantidade mostrada nesse frame equivale a quantidade de produtos iguais a esse no carrinho.
     @FindBy(css = ".cart-content-btn .btn-primary")
     private WebElement btnProceedToCheckout;
     @FindBy(css = ".btn.btn-secondary")
     private WebElement btnContinueShopping;
+    @FindBy(css = "h4#myModalLabel")
+    private WebElement productAddedMessage;
     private Product product;
     private WebDriver driver;
 
@@ -55,5 +57,9 @@ public class ProductAddedToCartFrame {
     public StoreCartPage clickProceedToCheckout() {
         btnProceedToCheckout.click();
         return new StoreCartPage(driver);
+    }
+
+    public String getFrameMessage() {
+        return productAddedMessage.getText();
     }
 }
