@@ -5,13 +5,14 @@ import com.daniboy.pageobjects.AutomationHomePage;
 import com.daniboy.pageobjects.store.StoreHomePage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.daniboy.util.Constants.automationTestSiteBaseURL;
 
 public class AutomationSiteNavigationTest extends BaseWebTest {
 
-    @Test(priority = -1)
+    @BeforeMethod
     public void enterUrl() {
         driver.get(automationTestSiteBaseURL);
     }

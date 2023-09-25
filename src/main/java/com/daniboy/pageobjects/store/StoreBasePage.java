@@ -1,6 +1,7 @@
 package com.daniboy.pageobjects.store;
 
 import com.daniboy.pageobjects.BasePage;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,8 @@ public abstract class StoreBasePage extends BasePage {
     protected WebElement myAccountBtn;
     @FindBy(css = ".cart-products-count")
     protected WebElement cartProductsCount;
+    @FindBy(css = ".ui-autocomplete-input")
+    protected WebElement searchField;
 
     protected WebDriver driver;
     protected WebDriverWait wait;
@@ -28,17 +31,25 @@ public abstract class StoreBasePage extends BasePage {
     public StoreBasePage(WebDriver driver, String pageTitle) {
         super(driver, pageTitle);
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(7));
     }
 
     public StoreCartPage clickOnCartBtn() {
         return new StoreCartPage(driver);
     }
 
-    public int getCartProductsCount() {
+    public int getCartProductsCount() { // The cart count on the up bar
         wait.until(ExpectedConditions.visibilityOf(cartProductsCount));
         return Integer.parseInt(cartProductsCount.getText().replace("(", "").replace(")", ""));
     }
+
+    public StoreSearchPage searchFor(String input) {
+        searchField.sendKeys(input);
+        searchField.sendKeys(Keys.ENTER);
+        return new StoreSearchPage(driver);
+    }
+
+
 
     // Outros métodos que podem ser criados: clickOnMyAccount, clickOnLogout...
     // Ambos devem retornar void.

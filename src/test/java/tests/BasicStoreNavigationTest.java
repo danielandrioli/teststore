@@ -4,6 +4,7 @@ import com.daniboy.BaseWebTest;
 import com.daniboy.ProductsToTest;
 import com.daniboy.pageobjects.store.StoreHomePage;
 import com.daniboy.pageobjects.store.StoreProductPage;
+import com.daniboy.pageobjects.store.StoreSearchPage;
 import com.daniboy.pageobjects.store.components.Product;
 import com.daniboy.pageobjects.store.components.ProductAddedToCartFrame;
 import org.testng.Assert;
@@ -77,5 +78,11 @@ public class BasicStoreNavigationTest extends BaseWebTest {
         Assert.assertEquals(driver.getTitle(), StoreHomePage.pageTitle);
         Assert.assertEquals(homePage.getCartProductsCount(), 1);
         driver.manage().deleteAllCookies();
+    }
+    //S2T5
+    @Test(description = "Given I'm on homepage, when I type on the search bar and enter, then I should go to the search page.")
+    public void searchForAnItemUsingSearchBar() {
+        new StoreHomePage(driver).searchFor("Mug");
+        Assert.assertEquals(driver.getTitle(), StoreSearchPage.pageTitle);
     }
 }

@@ -19,6 +19,7 @@ public class LoginTest extends BaseWebTest {
         driver.get(storeTestSiteBaseURL + "login?back=my-account");
     }
 
+    //S1T1
     @Parameters({"email", "password"})
     @Test(description = "Given I'm on login page, when I submit valid credentials, then I should go to my account page." +
             "Given I'm logged and I'm on My acccount page, when I click on logout, then I should go to the login page.")
@@ -33,6 +34,7 @@ public class LoginTest extends BaseWebTest {
         Assert.assertEquals(driver.getTitle(), StoreLoginPage.pageTitle);
     }
 
+    //S1T2
     @Parameters("email")
     @Test(description = "Given I'm on login page, when I enter invalid credentials, then I should stay on login page and " +
             "get a failed login message.")
@@ -46,6 +48,7 @@ public class LoginTest extends BaseWebTest {
         Assert.assertEquals(loginPage.getFailedLoginMessage(), failedLoginMessage);
     }
 
+    //S1T3
     @Parameters("password")
     @Test(description = "Given I'm on login page, when I type the password, then it should be hidden. " +
             "Given I'm on login page, when the password is typed and I click on show button, then I should see my password.")
