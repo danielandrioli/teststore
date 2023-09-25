@@ -4,14 +4,11 @@ import com.daniboy.BaseWebTest;
 import com.daniboy.pageobjects.store.StoreSearchPage;
 import com.daniboy.pageobjects.store.components.Product;
 import com.daniboy.pageobjects.store.components.ProductSortedBy;
-import com.google.common.collect.Comparators;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.List;
-import java.util.ListIterator;
 
 import static com.daniboy.util.Constants.storeTestSiteBaseURL;
 
@@ -22,6 +19,7 @@ public class SearchFiltersTest extends BaseWebTest {
         driver.get(storeTestSiteBaseURL + "search?controller=search&s=mug");
     }
 
+    //S4T1
     @Test(description = "Given I'm on search page, when I select 'Name, A to Z' sort filter, then I get the filtered results in that order.")
     public void verifySortByNameAtoZ() {
         List<Product> sortedProducts = new StoreSearchPage(driver)
@@ -37,6 +35,7 @@ public class SearchFiltersTest extends BaseWebTest {
         }
     }
 
+    //S4T2
     @Test(description = "Given I'm on search page, when I select 'Name, Z to A' sort filter, then I get the filtered results in that order.")
     public void verifySortByNameZtoA() {
         List<Product> sortedProducts = new StoreSearchPage(driver)
@@ -52,6 +51,7 @@ public class SearchFiltersTest extends BaseWebTest {
         }
     }
 
+    //S4T3
     @Test(description = "Given I'm on search page, when I select 'Price, low to high' sort filter, then I get the filtered results in that order.")
     public void verifySortByPriceLowToHigh() {
         List<Product> sortedProducts = new StoreSearchPage(driver)
@@ -67,6 +67,7 @@ public class SearchFiltersTest extends BaseWebTest {
         }
     }
 
+    //S4T4
     @Test(description = "Given I'm on search page, when I select 'Price, high to low' sort filter, then I get the filtered results in that order.")
     public void verifySortByPriceHighToLow() {
         List<Product> sortedProducts = new StoreSearchPage(driver)
@@ -81,12 +82,5 @@ public class SearchFiltersTest extends BaseWebTest {
                 Assert.fail("The product list is not filtered by Price, high to low.");
             }
         }
-    }
-
-
-    @AfterClass
-    @Override
-    public void teardown() {
-
     }
 }

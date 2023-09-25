@@ -7,7 +7,6 @@ import com.daniboy.pageobjects.store.StoreProductPage;
 import com.daniboy.pageobjects.store.components.Product;
 import org.testng.Assert;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -65,11 +64,5 @@ public class ProductToCartTest extends BaseWebTest {
 
         Assert.assertEquals(valueAfterCode, expectedPrice);
         Reporter.log("Price after promo code: " + valueAfterCode + " (shipping cost included).");
-    }
-
-    @AfterClass
-    @Override
-    public void teardown() {
-
     }
 }
